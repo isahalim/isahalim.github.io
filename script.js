@@ -54,29 +54,48 @@ document.addEventListener('DOMContentLoaded', () => {
     //     reveal: "none"
     // });
 
-    // Grab the toggle switch
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    // Grab the theme toggle button and icon
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
 
-    // Function to handle the theme change
-    function switchTheme(e) {
-        if (e.target.checked) {
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark'); // Save preference
+    // Function to update icon based on theme
+    function updateIcon(isDark) {
+        if (isDark) {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
         } else {
-            document.body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light'); // Save preference
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
         }
     }
 
+    // Function to handle the theme change
+    function switchTheme(e) {
+        e.preventDefault();
+        const isDark = document.body.classList.toggle('dark-mode');
+        if (isDark) {
+            localStorage.setItem('theme', 'dark'); // Save preference
+        } else {
+            localStorage.setItem('theme', 'light'); // Save preference
+        }
+        updateIcon(isDark);
+    }
+
     // Listen for clicks on the toggle
-    toggleSwitch.addEventListener('change', switchTheme, false);
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', switchTheme, false);
+    }
 
     // Check if the user already selected a theme in a previous session
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         if (currentTheme === 'dark') {
             document.body.classList.add('dark-mode');
-            toggleSwitch.checked = true; // Make sure the switch shows as "on"
+            updateIcon(true);
+        } else {
+            updateIcon(false);
         }
+    } else {
+        updateIcon(false);
     }
 });

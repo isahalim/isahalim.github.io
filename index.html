@@ -33,13 +33,14 @@
                 </a>
             </li>
 
-            <div class="theme-switch-wrapper" style="display: flex; align-items: center; margin-left: 20px;">
-                <span style="margin-right: 10px; font-weight: bold;">Dark Mode</span>
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-            </div>
+            <li style="display: flex; align-items: center; margin-left: auto;">
+                <button id="theme-toggle" class="nav-btn" style="cursor: pointer; min-width: 0; width: 45px; height: 45px; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: transparent;">
+                    <i class="fas fa-sun" id="theme-icon" style="font-size: 1.2rem; z-index: 10; color: var(--primary-color);"></i>
+                    <div class="liquid-btn"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; z-index: 5;">
+                    </div>
+                </button>
+            </li>
         </ul>
     </header>
 
