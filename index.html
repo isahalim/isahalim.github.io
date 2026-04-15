@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <canvas id="fluid-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; filter: invert(1);"></canvas>
+
+    <header class="header">
+        <ul class="nav-links">
+            <li>
+                <a href="#about-me" class="nav-btn" id="nav-home">
+                    <span class="btn-content">Home</span>
+                    <div class="liquid-btn"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; z-index: 5;">
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects" class="nav-btn" id="nav-projects">
+                    <span class="btn-content">Projects</span>
+                    <div class="liquid-btn"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; z-index: 5;">
+                    </div>
+                </a>
+            </li>
+
+            <div class="theme-switch-wrapper" style="display: flex; align-items: center; margin-left: 20px;">
+                <span style="margin-right: 10px; font-weight: bold;">Dark Mode</span>
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+        </ul>
+    </header>
+
+    <div class="page-content">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="profile-photo">
+                    <img src="githubPage_image.jpeg" alt="Profile Photo">
+                </div>
+                <h1 class="name"><a href="#about-me" id="nav-about-me"
+                        style="text-decoration: none; color: inherit;">Suzan
+                        Halim</a></h1>
+                <p class="introduction">
+                    <span class="student-role">Undergraduate Student</span><br>
+                    <span class="student-dept">Paul G. Allen School of Computer Science & Engineering,<br>
+                        University of Washington</span>
+                </p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/isahalim/" class="social-btn" target="_blank">
+                        <span class="btn-content"><i class="fab fa-linkedin"></i> LinkedIn</span>
+                        <div class="liquid-btn"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; z-index: 5;">
+                        </div>
+                    </a>
+                    <a href="https://github.com/isahalim" class="social-btn" target="_blank">
+                        <span class="btn-content"><i class="fab fa-github"></i> GitHub</span>
+                        <div class="liquid-btn"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; z-index: 5;">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-glass" id="sidebar-glass"></div>
+        </aside>
+
+        <main class="main-content">
+            <section id="about-me" class="about-me-section">
+                <h2>About Me</h2>
+                <p>Hello World! I am an undergraduate computer science student at the University of Washington.
+                    I am interested in Machine Learning and Computer Vision.
+                    My work explores the intersection of deep neural networks and biology.
+                </p>
+                <br>
+                <p>Feel free to look through my projects below or by clicking the 'Projects' button on the top right.
+                </p>
+            </section>
+
+            <div class="gif-container">
+                <img src="particle.gif" alt="Decorative background" class="ghost-gif">
+            </div>
+        </main>
+    </div>
+    <div class="projects-container">
+        <section id="projects" class="projects-section">
+            <h2>Projects</h2>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/isahalim/Feature-Extraction-Architecture-Evaluation-for-Metastatic-Tissue"
+                        target="_blank" style="text-decoration: none; color: inherit;">Feature Extraction
+                        Architecture Evaluation for Metastatic Tissue</a></h3>
+                <p>Focuses on the binary classification of histopathology scans to detect metastatic vs.
+                    non-metastatic tissue evaluating multiple state-of-the-art CNN architectures as feature
+                    extractors.</p>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/isahalim/Vaccine-Reservation-System" target="_blank"
+                        style="text-decoration: none; color: inherit;">Vaccine Reservation System</a></h3>
+                <p>A Java application for managing vaccine scheduling. It securely connects to a local SQLite or a
+                    remote Amazon Aurora database to keep track of patients, caregivers, and vaccine appointments.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/isahalim/Campus-Shortest-Path-Finder" target="_blank"
+                        style="text-decoration: none; color: inherit;">Campus Shortest Path Finder</a></h3>
+                <p>A full-stack web application built with React and Node.js that allows users to find the shortest
+                    walking path between buildings on campus using Dijkstra's algorithm and an interactive map
+                    interface.</p>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/isahalim/Interactive-3D-Audio-Visualization-Tool" target="_blank"
+                        style="text-decoration: none; color: inherit;">Interactive 3D Audio Visualization Tool</a>
+                </h3>
+                <p>A real-time 3D visualization built in JavaScript that responds dynamically to live microphone
+                    input using the p5.js library, extracting frequency bands to map onto geometric elements.</p>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="scripts/liquidGL.js"></script>
+    <script src="scripts/fluid.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
