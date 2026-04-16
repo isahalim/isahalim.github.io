@@ -1,0 +1,107 @@
+<svg viewBox="0 0 960 760" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+   
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#888"/>
+    </marker>
+  </defs>
+ 
+   
+  <line x1="480" y1="98" x2="480" y2="160" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+  <text x="492" y="133" font-size="11" fill="#999">time slot</text>
+ 
+  <line x1="390" y1="193" x2="306" y2="270" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="280" y1="306" x2="280" y2="358" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="568" y1="193" x2="648" y2="268" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="676" y1="306" x2="700" y2="358" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="215" y1="360" x2="140" y2="295" stroke="#999" stroke-width="1.4"/>
+  <line x1="230" y1="375" x2="110" y2="388" stroke="#999" stroke-width="1.4"/>
+  <line x1="228" y1="395" x2="120" y2="445" stroke="#999" stroke-width="1.4"/>
+ 
+  <line x1="800" y1="365" x2="876" y2="310" stroke="#999" stroke-width="1.4"/>
+ 
+  <line x1="730" y1="408" x2="710" y2="475" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="700" y1="513" x2="680" y2="558" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="668" y1="400" x2="555" y2="472" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="505" y1="510" x2="450" y2="558" stroke="#999" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+ 
+  <line x1="372" y1="570" x2="285" y2="570" stroke="#999" stroke-width="1.4"/>
+  <line x1="400" y1="608" x2="390" y2="648" stroke="#999" stroke-width="1.4"/>
+ 
+  <line x1="640" y1="605" x2="590" y2="648" stroke="#999" stroke-width="1.4"/>
+  <line x1="704" y1="608" x2="718" y2="648" stroke="#999" stroke-width="1.4"/>
+  <line x1="768" y1="585" x2="846" y2="620" stroke="#999" stroke-width="1.4"/>
+ 
+  <rect x="360" y="160" width="240" height="66" rx="10" fill="#1e4a8a"/>
+  <text x="480" y="188" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Availabilities</text>
+  <text x="480" y="208" text-anchor="middle" fill="#a8c4e8" font-size="12">Caregiver time slots</text>
+ 
+  <rect x="200" y="358" width="160" height="66" rx="10" fill="#7a2020"/>
+  <text x="280" y="386" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Caregivers</text>
+  <text x="280" y="406" text-anchor="middle" fill="#f0a0a0" font-size="12">Login + credentials</text>
+ 
+  <rect x="620" y="358" width="200" height="66" rx="10" fill="#1e4a8a"/>
+  <text x="720" y="386" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Reservations</text>
+  <text x="720" y="406" text-anchor="middle" fill="#a8c4e8" font-size="12">Booking record</text>
+ 
+  <rect x="362" y="558" width="176" height="66" rx="10" fill="#145a45"/>
+  <text x="450" y="586" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Vaccines</text>
+  <text x="450" y="606" text-anchor="middle" fill="#80e0c0" font-size="12">Vaccine catalogue</text>
+ 
+  <rect x="596" y="558" width="184" height="66" rx="10" fill="#4a3a10"/>
+  <text x="688" y="586" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Patients</text>
+  <text x="688" y="606" text-anchor="middle" fill="#e8cc70" font-size="12">Login + credentials</text>
+ 
+  <polygon points="280,270 318,306 280,342 242,306" fill="#2e2e2e"/>
+  <text x="280" y="311" text-anchor="middle" fill="#cccccc" font-size="13" font-weight="600">has</text>
+ 
+  <polygon points="676,268 714,304 676,340 638,304" fill="#2e2e2e"/>
+  <text x="676" y="309" text-anchor="middle" fill="#cccccc" font-size="12" font-weight="600">reserved</text>
+ 
+  <polygon points="700,475 732,508 700,541 668,508" fill="#2e2e2e"/>
+  <text x="700" y="513" text-anchor="middle" fill="#cccccc" font-size="13" font-weight="600">book</text>
+ 
+  <polygon points="530,472 562,505 530,538 498,505" fill="#2e2e2e"/>
+  <text x="530" y="510" text-anchor="middle" fill="#cccccc" font-size="13" font-weight="600">uses</text>
+ 
+   
+  <rect x="426" y="56" width="108" height="38" rx="8" fill="#1a6b5a"/>
+  <text x="480" y="80" text-anchor="middle" fill="#80e8d0" font-size="14" font-weight="600">Time</text>
+ 
+  <rect x="62" y="270" width="132" height="38" rx="8" fill="#3b3580"/>
+  <text x="128" y="294" text-anchor="middle" fill="#c8c0ff" font-size="13" font-weight="700">Username</text>
+  <line x1="76" y1="299" x2="180" y2="299" stroke="#c8c0ff" stroke-width="1.2"/>
+ 
+  <rect x="48" y="368" width="90" height="36" rx="8" fill="#3d3d3d"/>
+  <text x="93" y="391" text-anchor="middle" fill="#dddddd" font-size="13">Salt</text>
+  <rect x="52" y="428" width="90" height="36" rx="8" fill="#3d3d3d"/>
+  <text x="97" y="451" text-anchor="middle" fill="#dddddd" font-size="13">Hash</text>
+ 
+  <rect x="836" y="282" width="90" height="38" rx="8" fill="#3b3580"/>
+  <text x="881" y="306" text-anchor="middle" fill="#c8c0ff" font-size="13" font-weight="700">ID</text>
+  <line x1="850" y1="311" x2="912" y2="311" stroke="#c8c0ff" stroke-width="1.2"/>
+ 
+  <rect x="184" y="552" width="106" height="36" rx="8" fill="#3b3580"/>
+  <text x="237" y="575" text-anchor="middle" fill="#c8c0ff" font-size="13" font-weight="700">Name</text>
+  <line x1="197" y1="580" x2="277" y2="580" stroke="#c8c0ff" stroke-width="1.2"/>
+ 
+  <rect x="340" y="648" width="100" height="36" rx="8" fill="#3d3d3d"/>
+  <text x="390" y="671" text-anchor="middle" fill="#dddddd" font-size="13">Doses</text>
+ 
+  <rect x="516" y="648" width="132" height="36" rx="8" fill="#3b3580"/>
+  <text x="582" y="671" text-anchor="middle" fill="#c8c0ff" font-size="13" font-weight="700">Username</text>
+  <line x1="530" y1="676" x2="634" y2="676" stroke="#c8c0ff" stroke-width="1.2"/>
+ 
+  <rect x="672" y="648" width="90" height="36" rx="8" fill="#3d3d3d"/>
+  <text x="717" y="671" text-anchor="middle" fill="#dddddd" font-size="13">Salt</text>
+  <rect x="812" y="618" width="92" height="36" rx="8" fill="#3d3d3d"/>
+  <text x="858" y="641" text-anchor="middle" fill="#dddddd" font-size="13">Hash</text>
+ 
+</svg>

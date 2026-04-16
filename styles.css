@@ -37,7 +37,6 @@ body {
     border-bottom: 1px solid var(--border-color);
     padding: 1rem 2rem;
     display: flex;
-    justify-content: flex-end;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
@@ -48,6 +47,7 @@ body {
     list-style: none;
     display: flex;
     gap: 1rem;
+    width: 100%;
 }
 
 .nav-btn {
@@ -248,7 +248,26 @@ body {
     margin-bottom: 1.5rem;
     transition: transform 0.2s, box-shadow 0.2s;
     width: 100%;
-    text-align: center;
+
+    /* Flex layout for image on left */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.project-img {
+    flex: 0 0 350px;
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
@@ -451,5 +470,17 @@ body.dark-mode .project-card h3 a {
     /* 5. Adjust the projects container padding */
     .projects-container {
         padding: 0 1.5rem;
+    }
+
+    /* 6. Stack project card contents on mobile */
+    .project-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-img {
+        flex: none;
+        width: 100%;
+        height: auto;
     }
 }
