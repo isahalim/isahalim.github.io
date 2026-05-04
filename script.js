@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateIcon(false);
         }
     } else {
-        updateIcon(false);
+        document.body.classList.add('dark-mode');
+        updateIcon(true);
     }
 });
