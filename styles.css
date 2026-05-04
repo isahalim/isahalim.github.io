@@ -281,13 +281,18 @@ body {
     /* placed behind the ::after glass pane */
     filter: blur(20px);
     -webkit-filter: blur(20px);
-    opacity: 0;
+    opacity: 0.001;
+    /* Safari hack to prevent optimization clipping */
     transition: opacity 0.3s ease-in-out;
     border-radius: 8px;
     /* exactly match the 8px card */
     pointer-events: none;
     animation: glowAnimation 8s ease infinite;
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
+    /* Force GPU acceleration */
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 @keyframes glowAnimation {
@@ -330,13 +335,13 @@ body {
 }
 
 .repo-link-container {
-    display: inline-flex;
+    display: flex;
+    width: max-content;
     align-items: center;
     margin-top: 1.5rem;
     font-weight: 600;
     color: var(--primary-color);
     text-decoration: none;
-    overflow: hidden;
     transition: color 0.3s ease;
 }
 
@@ -345,7 +350,7 @@ body {
 .repo-text {
     display: inline-block;
     overflow: hidden;
-    max-width: 0;
+    max-width: 0px;
     opacity: 0;
     white-space: nowrap;
     transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
