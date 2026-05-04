@@ -280,13 +280,13 @@ body {
     z-index: -2;
     /* placed behind the ::after glass pane */
     filter: blur(20px);
+    -webkit-filter: blur(20px);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     border-radius: 8px;
     /* exactly match the 8px card */
     pointer-events: none;
     animation: glowAnimation 8s ease infinite;
-    will-change: filter, transform;
     transform: translateZ(0);
 }
 
@@ -343,6 +343,8 @@ body {
 
 
 .repo-text {
+    display: inline-block;
+    overflow: hidden;
     max-width: 0;
     opacity: 0;
     white-space: nowrap;
@@ -358,6 +360,7 @@ body {
 }
 
 .repo-arrow {
+    display: inline-block;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 1.2rem;
 }
