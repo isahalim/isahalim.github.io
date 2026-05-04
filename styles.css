@@ -83,6 +83,7 @@ body {
     flex: 0 0 300px;
     position: relative;
     border-radius: 12px;
+    margin-top: 10px;
 }
 
 .sidebar-content {
