@@ -49,6 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper to detect mobile
     const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
 
+    // Restore "liveliness" on mobile by adding passive touchstart listeners.
+    // This forces the mobile browser to immediately process touch events and
+    // trigger CSS :hover/:active states without waiting for a full click, 
+    // bridging the gap left by removing the constant requestAnimationFrame loop.
+    if (isMobile()) {
+        const interactiveElements = document.querySelectorAll('.project-card, .nav-btn, .social-btn, .project-card h3 a');
+        interactiveElements.forEach(el => {
+            el.addEventListener('touchstart', () => {}, {passive: true});
+        });
+    }
+
     // --- Wave Background Animation ---
     if (!isMobile()) {
         const waveContainer = document.createElement('div');
