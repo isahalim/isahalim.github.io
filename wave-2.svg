@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 2000" width="450" height="2000" preserveAspectRatio="xMidYMid slice" style="color: #ffffff;">
+  <!--
+    Wave layer 2 of 3. Standalone SVG, 2000px tall, designed to loop seamlessly
+    by animating translateY(0) -> translateY(-1000px). The wave shape repeats
+    every 500px and the gradient every 1000px, so -1000px lands on an identical
+    configuration regardless of animation speed.
+
+    All three layer SVGs share the same viewBox (0 0 450 2000), so stacking them
+    in absolutely-positioned containers will overlay them in register, exactly
+    matching the original three-wave composition.
+
+    Pane fill uses currentColor: set `color: #ffffff` on a wrapping element for
+    light mode, `color: #1e1e1e` for dark mode.
+  -->
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1000"
+                    gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+      <stop offset="0"   stop-color="#2196F3"/>
+      <stop offset="0.5" stop-color="#4CAF50"/>
+      <stop offset="1"   stop-color="#2196F3"/>
+    </linearGradient>
+
+    <filter id="blur" x="-20%" y="-5%" width="140%" height="110%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+
+    <clipPath id="cp-hl" clipPathUnits="userSpaceOnUse"><polygon points="-400.0,0.0 284.3,0.0 254.6,25.0 223.8,50.0 193.9,75.0 167.1,100.0 144.9,125.0 128.3,150.0 117.6,175.0 112.6,200.0 112.6,225.0 116.2,250.0 121.8,275.0 127.9,300.0 132.8,325.0 135.1,350.0 133.9,375.0 128.7,400.0 119.8,425.0 107.7,450.0 93.8,475.0 79.7,500.0 67.2,525.0 58.1,550.0 54.1,575.0 56.6,600.0 66.4,625.0 83.7,650.0 108.1,675.0 138.4,700.0 173.0,725.0 209.8,750.0 246.3,775.0 280.2,800.0 309.1,825.0 331.1,850.0 344.8,875.0 349.3,900.0 344.6,925.0 331.2,950.0 310.6,975.0 284.3,1000.0 254.6,1025.0 223.8,1050.0 193.9,1075.0 167.1,1100.0 144.9,1125.0 128.3,1150.0 117.6,1175.0 112.6,1200.0 112.6,1225.0 116.2,1250.0 121.8,1275.0 127.9,1300.0 132.8,1325.0 135.1,1350.0 133.9,1375.0 128.7,1400.0 119.8,1425.0 107.7,1450.0 93.8,1475.0 79.7,1500.0 67.2,1525.0 58.1,1550.0 54.1,1575.0 56.6,1600.0 66.4,1625.0 83.7,1650.0 108.1,1675.0 138.4,1700.0 173.0,1725.0 209.8,1750.0 246.3,1775.0 280.2,1800.0 309.1,1825.0 331.1,1850.0 344.8,1875.0 349.3,1900.0 344.6,1925.0 331.2,1950.0 310.6,1975.0 284.3,2000.0 -400.0,2000.0"/></clipPath>
+    <clipPath id="cp-pane" clipPathUnits="userSpaceOnUse"><polygon points="-400.0,0.0 269.3,0.0 239.6,25.0 208.8,50.0 178.9,75.0 152.1,100.0 129.9,125.0 113.3,150.0 102.6,175.0 97.6,200.0 97.6,225.0 101.2,250.0 106.8,275.0 112.9,300.0 117.8,325.0 120.1,350.0 118.9,375.0 113.7,400.0 104.8,425.0 92.7,450.0 78.8,475.0 64.7,500.0 52.2,525.0 43.1,550.0 39.1,575.0 41.6,600.0 51.4,625.0 68.7,650.0 93.1,675.0 123.4,700.0 158.0,725.0 194.8,750.0 231.3,775.0 265.2,800.0 294.1,825.0 316.1,850.0 329.8,875.0 334.3,900.0 329.6,925.0 316.2,950.0 295.6,975.0 269.3,1000.0 239.6,1025.0 208.8,1050.0 178.9,1075.0 152.1,1100.0 129.9,1125.0 113.3,1150.0 102.6,1175.0 97.6,1200.0 97.6,1225.0 101.2,1250.0 106.8,1275.0 112.9,1300.0 117.8,1325.0 120.1,1350.0 118.9,1375.0 113.7,1400.0 104.8,1425.0 92.7,1450.0 78.8,1475.0 64.7,1500.0 52.2,1525.0 43.1,1550.0 39.1,1575.0 41.6,1600.0 51.4,1625.0 68.7,1650.0 93.1,1675.0 123.4,1700.0 158.0,1725.0 194.8,1750.0 231.3,1775.0 265.2,1800.0 294.1,1825.0 316.1,1850.0 329.8,1875.0 334.3,1900.0 329.6,1925.0 316.2,1950.0 295.6,1975.0 269.3,2000.0 -400.0,2000.0"/></clipPath>
+  </defs>
+
+  <!-- Blurred blue-green highlight -->
+  <g filter="url(#blur)">
+    <g clip-path="url(#cp-hl)">
+      <rect x="-400" y="0" width="900" height="2000" fill="url(#grad)" opacity="0.5"/>
+    </g>
+  </g>
+  <!-- Translucent glass pane -->
+  <g clip-path="url(#cp-pane)">
+    <rect x="-400" y="0" width="900" height="2000" fill="currentColor" opacity="0.492"/>
+  </g>
+</svg>
