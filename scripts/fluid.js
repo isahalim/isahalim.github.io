@@ -1545,6 +1545,14 @@ function correctDeltaY(delta) {
 
 function generateColor() {
     let c = HSVtoRGB(Math.random(), 1.0, 1.0);
+    
+    if (typeof document !== 'undefined' && document.documentElement) {
+        let waveR = Math.round(c.r * 255);
+        let waveG = Math.round(c.g * 255);
+        let waveB = Math.round(c.b * 255);
+        document.documentElement.style.setProperty('--wave-color', `rgb(${waveR}, ${waveG}, ${waveB})`);
+    }
+
     c.r *= 0.15;
     c.g *= 0.15;
     c.b *= 0.15;

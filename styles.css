@@ -454,6 +454,39 @@ body.dark-mode #fluid-canvas {
     filter: none !important;
 }
 
+.wave-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 450px;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.wave-glass-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--glass-bg);
+    border-right: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.wave-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #2196F3, #4CAF50);
+    opacity: 0.5;
+    /* slight glow */
+}
+
 .introduction {
     line-height: 1.5;
     margin-bottom: 1.5rem;
