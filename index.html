@@ -153,7 +153,21 @@
             </div>
         </section>
     </div>
-    <script src="scripts/fluid.js"></script>
+    <script>
+        // Check if mobile
+        const isMobileDevice = () => /Mobi|Android/i.test(navigator.userAgent);
+        
+        if (isMobileDevice()) {
+            // Hide the fluid canvas on mobile
+            const canvas = document.getElementById('fluid-canvas');
+            if (canvas) canvas.style.display = 'none';
+        } else {
+            // Load fluid.js only on desktop
+            const fluidScript = document.createElement('script');
+            fluidScript.src = 'scripts/fluid.js';
+            document.body.appendChild(fluidScript);
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 
