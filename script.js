@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMobile()) {
         const interactiveElements = document.querySelectorAll('.project-card, .nav-btn, .social-btn, .project-card h3 a');
         interactiveElements.forEach(el => {
-            el.addEventListener('touchstart', () => {}, {passive: true});
+            el.addEventListener('touchstart', () => { }, { passive: true });
         });
     }
 
@@ -65,19 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const waveContainer = document.createElement('div');
         waveContainer.className = 'wave-bg';
         waveContainer.style.transformOrigin = 'left center';
+
+        // Force Hardware Acceleration
+        waveContainer.style.willChange = 'transform';
+        waveContainer.style.transform = 'translateZ(0)'; // Force GPU layer
+        waveContainer.style.pointerEvents = 'none'; // CRITICAL: prevents it from intercepting clicks
+
         document.body.prepend(waveContainer);
 
         const createHighlight = () => {
             const wrapper = document.createElement('div');
-            wrapper.style.filter = 'blur(20px)';
+            wrapper.style.filter = 'blur(8px)'; // Remove blur during intro
+            wrapper.style.transition = 'filter 1s ease-in'; // Fade in transition
             wrapper.style.position = 'absolute';
             wrapper.style.top = '0';
             wrapper.style.left = '0';
-            wrapper.style.width = '100%';
+            wrapper.style.width = '100vw';
             wrapper.style.height = '100%';
 
             const hl = document.createElement('div');
             hl.className = 'wave-highlight';
+            hl.style.width = '100vw';
             wrapper.appendChild(hl);
             return { wrapper, hl };
         };
@@ -86,16 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const glass1 = document.createElement('div');
         glass1.className = 'wave-glass-pane';
         glass1.style.opacity = '0.3';
+        glass1.style.width = '100vw';
 
         const hl2Obj = createHighlight();
         const glass2 = document.createElement('div');
         glass2.className = 'wave-glass-pane';
         glass2.style.opacity = '0.6';
+        glass2.style.width = '100vw';
 
         const hl3Obj = createHighlight();
         const glass3 = document.createElement('div');
         glass3.className = 'wave-glass-pane';
         glass3.style.opacity = '1.0';
+        glass3.style.width = '100vw';
 
         waveContainer.appendChild(hl1Obj.wrapper);
         waveContainer.appendChild(glass1);
@@ -108,10 +119,43 @@ document.addEventListener('DOMContentLoaded', () => {
         let scrollVelocity = 0;
         let lastScrollY = window.scrollY;
 
+        let startTime = Date.now();
+        const introDuration = 2500; // 2.5 seconds total
+
         function animateWave() {
             let currentScrollY = window.scrollY;
             let deltaY = currentScrollY - lastScrollY;
             lastScrollY = currentScrollY;
+
+            let elapsed = Date.now() - startTime;
+            let introProgress = Math.min(elapsed / introDuration, 1);
+
+            let extraWidth = 0;
+            let currentZIndex = waveContainer.style.zIndex;
+
+            if (introProgress < 0.5) {
+                // Phase 1: Sweep left offscreen
+                if (currentZIndex !== '9999') waveContainer.style.zIndex = '9999';
+                let p = introProgress / 0.5; // 0 to 1
+                let easeIn = p * p * p; // Cubic ease in
+                extraWidth = window.innerWidth - (window.innerWidth + 1500) * easeIn;
+            } else if (introProgress < 1) {
+                // Phase 2: Sweep right from offscreen to normal position
+                if (currentZIndex !== '0') waveContainer.style.zIndex = '0';
+                let p = (introProgress - 0.5) / 0.5; // 0 to 1
+                let easeOut = 1 - Math.pow(1 - p, 3); // Cubic ease out
+                extraWidth = -1500 + 1500 * easeOut;
+            } else {
+                if (currentZIndex !== '0') waveContainer.style.zIndex = '0';
+                extraWidth = 0;
+
+                // Fade the blur in only after introProgress >= 1
+                if (hl1Obj.wrapper.style.filter !== 'blur(20px)') {
+                    hl1Obj.wrapper.style.filter = 'blur(20px)';
+                    hl2Obj.wrapper.style.filter = 'blur(20px)';
+                    hl3Obj.wrapper.style.filter = 'blur(20px)';
+                }
+            }
 
             scrollVelocity = scrollVelocity * 0.9 + Math.abs(deltaY) * 0.1;
 
@@ -131,14 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     let y = i * stepY;
                     let normY = (y / h) * 1000; // normalize to keep wave shape consistent
                     let widthOffset = widthOffsetBase * (w / 100);
-                    let x = widthOffset +
+                    let x = widthOffset + extraWidth +
                         Math.sin(normY * 0.005 + wavePhase + phaseOffset) * 25 * ampMult * (w / 100) +
                         Math.sin(normY * 0.01 + wavePhase * 1.5) * 15 * ampMult * (w / 100);
 
                     if (isHighlight) x += 15; // Shift highlight edge significantly so it blurs into a wide soft glow
                     pts.push(`${x.toFixed(1)}px ${y.toFixed(1)}px`);
                 }
-                // Move the left edge deeply off-screen (-400px) to prevent it from clipping the wave
+                // Use -400px to keep bounding box tighter and avoid Chrome memory/raster issues
                 return `polygon(-400px 0px, ${pts.join(', ')}, -400px ${h}px)`;
             }
 
@@ -160,7 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Slow rotation and wavy transform
             let rotation = Math.sin(wavePhase * 0.3) * 2;
             let scale = 1.05 + Math.sin(wavePhase * 0.5) * 0.05;
-            waveContainer.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
+            // Retain translateZ(0) for hardware acceleration
+            waveContainer.style.transform = `scale(${scale}) rotate(${rotation}deg) translateZ(0)`;
 
             requestAnimationFrame(animateWave);
         }

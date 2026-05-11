@@ -486,8 +486,7 @@ body.dark-mode #fluid-canvas {
     height: 100%;
     background-color: var(--glass-bg);
     border-right: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* Removed backdrop-filter to fix Chrome jittering on animated clip-paths */
 }
 
 .wave-highlight {
