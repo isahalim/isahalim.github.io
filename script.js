@@ -1,17 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Grab the theme toggle button and icon
+    // Grab the theme toggle button and icons
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
 
     // Function to update icon based on theme
     function updateIcon(isDark) {
         if (isDark) {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
+            if (themeIconSun) {
+                themeIconSun.style.opacity = '0';
+                themeIconSun.style.transform = 'rotate(90deg)';
+            }
+            if (themeIconMoon) {
+                themeIconMoon.style.opacity = '1';
+                themeIconMoon.style.transform = 'rotate(0deg)';
+            }
         } else {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+            if (themeIconSun) {
+                themeIconSun.style.opacity = '1';
+                themeIconSun.style.transform = 'rotate(0deg)';
+            }
+            if (themeIconMoon) {
+                themeIconMoon.style.opacity = '0';
+                themeIconMoon.style.transform = 'rotate(-90deg)';
+            }
         }
     }
 

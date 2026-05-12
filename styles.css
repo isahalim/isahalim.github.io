@@ -3,6 +3,8 @@
     --acc-color: #315c7e;
     --bg-color: rgba(255, 255, 255, 0.85);
     /* Semi-transparent to reveal fluid */
+    --page-bg: #F5EBE0;
+    --tint-color: #F5EBE0;
     --sidebar-bg: transparent;
     /* Changed to allow glass effect over body background */
     --text-color: #494e52;
@@ -12,9 +14,10 @@
     /* Transparent background */
 
     /* New variables for the glass effect */
-    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-bg: rgba(250, 243, 235, 0.60);
     --glass-border: rgba(255, 255, 255, 0.3);
     --btn-glass-bg: rgba(255, 255, 255, 0.1);
+    --card-glow-opacity: 0.3;
 }
 
 * {
@@ -26,8 +29,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: var(--text-color);
-    background: transparent;
-    /* Setting to transparent so WebGL shows */
+    background: var(--page-bg);
+    transition: background-color 0.8s ease, color 0.8s ease;
     line-height: 1.6;
 }
 
@@ -44,6 +47,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.8s ease, border-color 0.8s ease, backdrop-filter 0.8s ease;
 }
 
 .nav-links {
@@ -182,6 +186,7 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.8s ease, border-color 0.8s ease;
 }
 
 /* Main Content */
@@ -194,6 +199,7 @@ body {
     padding: 3rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.8s ease, border-color 0.8s ease;
 }
 
 /* --- New Full-Width Projects Layout --- */
@@ -277,6 +283,7 @@ body {
     -webkit-backdrop-filter: blur(12px);
     border-radius: 8px;
     z-index: -1;
+    transition: background-color 0.8s ease, border-color 0.8s ease;
 }
 
 .project-card::before {
@@ -322,7 +329,7 @@ body {
 }
 
 .project-card:hover::before {
-    opacity: 1;
+    opacity: var(--card-glow-opacity);
 }
 
 .project-img {
@@ -447,6 +454,8 @@ body.dark-mode {
     --acc-color: #68D391;
     /* Matches your toggle switch */
     --bg-color: rgba(18, 18, 18, 0.85);
+    --page-bg: #121212;
+    --tint-color: #FFFFFF;
     --text-color: #e0e0e0;
     --light-text: #a0a0a0;
     --border-color: #333333;
@@ -455,6 +464,7 @@ body.dark-mode {
     --glass-bg: rgba(30, 30, 30, 0.82);
     --glass-border: rgba(255, 255, 255, 0.1);
     --btn-glass-bg: rgba(30, 30, 30, 0.3);
+    --card-glow-opacity: 1;
 
     background-color: #121212;
 }
@@ -465,7 +475,7 @@ body.dark-mode .repo-link-container {
 
 /* Fixes the WebGL fluid canvas inversion in dark mode */
 body.dark-mode #fluid-canvas {
-    filter: none !important;
+    filter: invert(0) sepia(0) !important;
 }
 
 .wave-bg {
@@ -486,6 +496,7 @@ body.dark-mode #fluid-canvas {
     height: 100%;
     background-color: var(--glass-bg);
     border-right: 1px solid var(--glass-border);
+    transition: background-color 0.8s ease, border-color 0.8s ease;
     /* Removed backdrop-filter to fix Chrome jittering on animated clip-paths */
 }
 
@@ -597,6 +608,10 @@ body.dark-mode .project-card h3 a {
         width: 100%;
         max-width: 400px;
         /* Keeps it from getting too wide on iPads */
+    }
+
+    #canvas-tint {
+        display: none !important;
     }
 
     /* 3. Make the main content box take up the full width */

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121212">
     <title>Academic Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,7 +12,10 @@
 
 <body>
     <canvas id="fluid-canvas"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; filter: invert(1);"></canvas>
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; filter: invert(1); transition: filter 0.8s ease;"></canvas>
+    <div id="canvas-tint"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; mix-blend-mode: multiply; background-color: var(--tint-color); transition: background-color 0.8s ease;">
+    </div>
 
     <header class="header">
         <ul class="nav-links">
@@ -29,9 +33,11 @@
 
             <li style="display: flex; align-items: center; margin-left: auto;">
                 <button id="theme-toggle" class="nav-btn"
-                    style="cursor: pointer; min-width: 0; width: 45px; height: 45px; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-sun" id="theme-icon"
-                        style="font-size: 1.2rem; z-index: 10; color: var(--primary-color);"></i>
+                    style="cursor: pointer; min-width: 0; width: 45px; height: 45px; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                    <i class="fas fa-sun" id="theme-icon-sun"
+                        style="font-size: 1.2rem; z-index: 10; color: var(--primary-color); position: absolute; transition: transform 0.5s ease, opacity 0.5s ease; opacity: 1; transform: rotate(0deg);"></i>
+                    <i class="fas fa-moon" id="theme-icon-moon"
+                        style="font-size: 1.2rem; z-index: 10; color: var(--primary-color); position: absolute; transition: transform 0.5s ease, opacity 0.5s ease; opacity: 0; transform: rotate(-90deg);"></i>
                 </button>
             </li>
         </ul>
@@ -156,7 +162,7 @@
     <script>
         // Check if mobile
         const isMobileDevice = () => /Mobi|Android/i.test(navigator.userAgent);
-        
+
         if (isMobileDevice()) {
             // Hide the fluid canvas on mobile
             const canvas = document.getElementById('fluid-canvas');
