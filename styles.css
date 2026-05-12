@@ -41,7 +41,7 @@ body {
     border-bottom: 1px solid var(--glass-border);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 1rem 2rem;
+    padding: calc(1rem + env(safe-area-inset-top)) 2rem 1rem 2rem;
     display: flex;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     position: sticky;
@@ -623,7 +623,7 @@ body.dark-mode .project-card h3 a {
     /* 4. Center the header navigation links so they don't overflow */
     .header {
         justify-content: center;
-        padding: 1rem;
+        padding: calc(1rem + env(safe-area-inset-top)) 1rem 1rem 1rem;
     }
 
     .nav-links {

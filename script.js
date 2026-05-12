@@ -32,10 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function switchTheme(e) {
         e.preventDefault();
         const isDark = document.body.classList.toggle('dark-mode');
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (isDark) {
             localStorage.setItem('theme', 'dark'); // Save preference
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
         } else {
             localStorage.setItem('theme', 'light'); // Save preference
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#F5EBE0');
         }
         updateIcon(isDark);
     }
@@ -47,16 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if the user already selected a theme in a previous session
     const currentTheme = localStorage.getItem('theme');
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (currentTheme) {
         if (currentTheme === 'dark') {
             document.body.classList.add('dark-mode');
             updateIcon(true);
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
         } else {
             updateIcon(false);
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#F5EBE0');
         }
     } else {
         document.body.classList.add('dark-mode');
         updateIcon(true);
+        if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
     }
 
     // Helper to detect mobile
