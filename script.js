@@ -231,4 +231,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         requestAnimationFrame(animateWave);
     }
+
+    // --- Reveal Animations ---
+    function initRevealAnimations() {
+        const aboutMe = document.getElementById('about-me');
+        const sidebar = document.querySelector('.sidebar');
+        const projectsTitle = document.querySelector('#projects h2');
+        const projects = document.querySelectorAll('.project-card');
+
+        const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+        
+        // Desktop wave intro sweep happens between 0-1.25s
+        const aboutMeDelay = isMobileDevice ? 200 : 700;
+        const sidebarDelay = isMobileDevice ? 400 : 1000;
+
+        setTimeout(() => {
+            if (aboutMe) aboutMe.classList.add('reveal-visible');
+        }, aboutMeDelay);
+
+        setTimeout(() => {
+            if (sidebar) sidebar.classList.add('reveal-visible');
+        }, sidebarDelay);
+
+        // Scroll reveals for projects
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        let delayCounter = 0;
+        let resetDelayTimeout = null;
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('reveal-visible');
+                    }, delayCounter * 150);
+                    
+                    delayCounter++;
+                    observer.unobserve(entry.target);
+                }
+            });
+            
+            if (resetDelayTimeout) clearTimeout(resetDelayTimeout);
+            resetDelayTimeout = setTimeout(() => {
+                delayCounter = 0;
+            }, 50);
+        }, observerOptions);
+
+        if (projectsTitle) observer.observe(projectsTitle);
+        projects.forEach(p => observer.observe(p));
+    }
+
+    initRevealAnimations();
 });
