@@ -1553,15 +1553,11 @@ function generateColor() {
         document.documentElement.style.setProperty('--wave-color', `rgb(${waveR}, ${waveG}, ${waveB})`);
     }
 
-    c.r *= 0.15;
-    c.g *= 0.15;
-    c.b *= 0.15;
-
-    // const isDarkMode = document.body.classList.contains('dark-mode');
-    // const multiplier = isDarkMode ? 0.15 : 0.05;
-    // c.r *= multiplier;
-    // c.g *= multiplier;
-    // c.b *= multiplier;
+    const isDarkMode = document.documentElement.classList.contains('dark-mode');
+    const multiplier = isDarkMode ? 0.15 : 0.05;
+    c.r *= multiplier;
+    c.g *= multiplier;
+    c.b *= multiplier;
     return c;
 }
 

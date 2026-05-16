@@ -48,22 +48,23 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.addEventListener('click', switchTheme, false);
     }
 
-    // Check if the user already selected a theme in a previous session
-    const currentTheme = localStorage.getItem('theme');
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    if (currentTheme) {
-        if (currentTheme === 'dark') {
-            document.documentElement.classList.add('dark-mode');
-            updateIcon(true);
-            if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
-        } else {
-            updateIcon(false);
-            if (themeColorMeta) themeColorMeta.setAttribute('content', '#F5EBE0');
-        }
-    } else {
+    // Initialize theme state based on localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = savedTheme ? (savedTheme === 'dark') : prefersDark;
+
+    // Apply the correct theme class and update UI
+    if (isDark) {
         document.documentElement.classList.add('dark-mode');
-        updateIcon(true);
-        if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
+    } else {
+        document.documentElement.classList.remove('dark-mode');
+    }
+    updateIcon(isDark);
+
+    // Synchronize meta tag
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', isDark ? '#121212' : '#F5EBE0');
     }
 
     // Helper to detect mobile
