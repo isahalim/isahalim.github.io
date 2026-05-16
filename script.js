@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to handle the theme change
     function switchTheme(e) {
         e.preventDefault();
-        const isDark = document.body.classList.toggle('dark-mode');
+        const isDark = document.documentElement.classList.toggle('dark-mode');
         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (isDark) {
             localStorage.setItem('theme', 'dark'); // Save preference
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (currentTheme) {
         if (currentTheme === 'dark') {
-            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
             updateIcon(true);
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
         } else {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#F5EBE0');
         }
     } else {
-        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
         updateIcon(true);
         if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
     }
@@ -237,10 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const aboutMe = document.getElementById('about-me');
         const sidebar = document.querySelector('.sidebar');
         const projectsTitle = document.querySelector('#projects h2');
-        const projects = document.querySelectorAll('.project-card');
+        const projects = document.querySelectorAll('.project-card, .glass-card');
 
         const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
-        
+
         // Desktop wave intro sweep happens between 0-1.25s
         const aboutMeDelay = isMobileDevice ? 200 : 700;
         const sidebarDelay = isMobileDevice ? 400 : 1000;
@@ -268,12 +268,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         entry.target.classList.add('reveal-visible');
                     }, delayCounter * 150);
-                    
+
                     delayCounter++;
                     observer.unobserve(entry.target);
                 }
             });
-            
+
             if (resetDelayTimeout) clearTimeout(resetDelayTimeout);
             resetDelayTimeout = setTimeout(() => {
                 delayCounter = 0;

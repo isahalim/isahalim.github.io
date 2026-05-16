@@ -26,10 +26,14 @@
     padding: 0;
 }
 
+html {
+    background-color: var(--page-bg);
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: var(--text-color);
-    background: var(--page-bg);
+    background: var(--body-bg);
     transition: background-color 0.8s ease, color 0.8s ease;
     line-height: 1.6;
 }
@@ -448,7 +452,7 @@ body {
 
 
 /* --- Dark Mode Colors --- */
-body.dark-mode {
+.dark-mode {
     /* Redefining the CSS variables for the dark theme */
     --primary-color: #ffffff;
     --acc-color: #68D391;
@@ -459,8 +463,8 @@ body.dark-mode {
     --text-color: #e0e0e0;
     --light-text: #a0a0a0;
     --border-color: #333333;
-    --body-bg: #1e1e1e;
-    /* Used for project cards */
+    --body-bg: transparent;
+    /* Transparent background */
     --glass-bg: rgba(30, 30, 30, 0.82);
     --glass-border: rgba(255, 255, 255, 0.1);
     --btn-glass-bg: rgba(30, 30, 30, 0.3);
@@ -469,12 +473,12 @@ body.dark-mode {
     background-color: #121212;
 }
 
-body.dark-mode .repo-link-container {
+.dark-mode .repo-link-container {
     color: var(--primary-color);
 }
 
 /* Fixes the WebGL fluid canvas inversion in dark mode */
-body.dark-mode #fluid-canvas {
+.dark-mode #fluid-canvas {
     filter: invert(0) sepia(0) !important;
 }
 
@@ -538,7 +542,7 @@ body.dark-mode #fluid-canvas {
 }
 
 /* Update your dark mode override so the gradient stays visible */
-body.dark-mode .student-dept {
+.dark-mode .student-dept {
     /* Slightly brighter pastel blue/green for better contrast on dark backgrounds */
     background: linear-gradient(to right, #64B5F6, #81C784);
     -webkit-background-clip: text;
@@ -580,7 +584,7 @@ html {
 }
 
 /* Ensure the dark mode version is bright enough to read */
-body.dark-mode .project-card h3 a {
+.dark-mode .project-card h3 a {
     background: linear-gradient(to right, #81C784, #64B5F6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -662,4 +666,94 @@ body.dark-mode .project-card h3 a {
 .reveal-visible {
     opacity: 1;
     transform: scale(1) translateY(0);
+}
+
+/* Skills & Interests Sections */
+.skills-section,
+.interests-section {
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+.skills-section h2,
+.interests-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
+
+.skills-section h2::after,
+.interests-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #2196F3, #4CAF50);
+    border-radius: 2px;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.skills-category h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    background: linear-gradient(to right, #2196F3, #4CAF50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.dark-mode .skills-category h3 {
+    background: linear-gradient(to right, #64B5F6, #81C784);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-tag {
+    background-color: var(--btn-glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--glass-bg);
+}
+
+.student-email {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    display: inline-block;
+    margin-top: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.student-email i {
+    margin-right: 0.3rem;
 }

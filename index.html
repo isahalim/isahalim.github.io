@@ -8,6 +8,15 @@
     <title>Academic Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme');
+            var isDark = t === 'dark' || !t;
+            if (isDark) document.documentElement.classList.add('dark-mode');
+            var bgColor = isDark ? '#121212' : '#F5EBE0';
+            document.write('<style>html { background-color: ' + bgColor + '; }</style>');
+        })();
+    </script>
 </head>
 
 <body>
@@ -54,7 +63,9 @@
                 <p class="introduction">
                     <span class="student-role">Undergraduate Student</span><br>
                     <span class="student-dept">Paul G. Allen School of Computer Science & Engineering,<br>
-                        University of Washington</span>
+                        University of Washington</span><br>
+                    <span class="student-email"><i class="fas fa-envelope"></i> smh74 [at] cs (dot) washington (dot)
+                        edu</span>
                 </p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/isahalim/" class="social-btn" target="_blank">
@@ -82,6 +93,8 @@
                 <p>Feel free to look through my projects below.
                 </p>
             </section>
+
+
 
             <div class="gif-container">
                 <img src="particle.gif" alt="Decorative background" class="ghost-gif">
@@ -156,6 +169,65 @@
                         <i class="fas fa-arrow-right repo-arrow"></i>
                     </a>
                 </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section reveal-hidden glass-card">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skills-category">
+                    <h3>Languages</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">MuJoCo</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">Claude Code</span>
+                        <span class="skill-tag">Colab</span>
+                        <span class="skill-tag">SQLite</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="interests" class="interests-section reveal-hidden glass-card">
+            <h2>Interests</h2>
+            <div class="skills-list">
+                <span class="skill-tag">Embodied AI</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Computer Vision</span>
+                <span class="skill-tag">Reinforcement Learning</span>
+                <span class="skill-tag">Explainable AI</span>
+                <span class="skill-tag">Intelligent Control</span>
+                <span class="skill-tag">Natural Language Processing</span>
+                <span class="skill-tag">Systems Programming</span>
+                <span class="skill-tag">Computational Biology</span>
+                <span class="skill-tag">Deep Learning</span>
+                <span class="skill-tag">Synthetic Biology</span>
             </div>
         </section>
     </div>
