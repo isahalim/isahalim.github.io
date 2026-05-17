@@ -419,33 +419,58 @@ body {
 
 /* --- Decorative GIF Styles --- */
 .gif-container {
+    position: relative;
     display: flex;
     justify-content: center;
-    /* Centers the GIF horizontally in the empty space */
     align-items: center;
     margin-top: 50px;
-    /* Pushes it down away from the text cards */
     padding-bottom: 50px;
+    min-height: 400px; /* Space for the stacked GIFs */
 }
 
 .ghost-gif {
+    position: absolute;
     max-width: 400px;
-    /* Adjust this to make the GIF bigger or smaller */
     width: 100%;
+    pointer-events: none;
+    opacity: 0;
 
-    /* 1. Low overall opacity */
-    opacity: 0.25;
-
-    filter: brightness(1);
-
-    /* 2. Turns all black pixels completely transparent */
+    /* Default removal trick — works on dark backgrounds (used by sleep gif) */
+    filter: invert(1) brightness(1.2) contrast(1.5);
     mix-blend-mode: difference;
 
-    /* The actual mask */
-    mask-image: radial-gradient(circle, black 30%, transparent 69%);
+    transition: opacity 0.6s ease-out, filter 0.6s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-    /* Required for Chrome, Safari, and Edge support */
-    -webkit-mask-image: radial-gradient(circle, black 30%, transparent 69%);
+.gif-awake {
+    opacity: 0.85;
+    z-index: 2;
+    /* multiply makes the white GIF background blend cleanly into the light beige page bg */
+    mix-blend-mode: multiply;
+    filter: contrast(1.15) brightness(0.92);
+    transform: scale(1);
+}
+
+.gif-sleep {
+    opacity: 0;
+    z-index: 1;
+    transform: scale(0.9);
+    /* Removed liquid distort and blur */
+}
+
+/* Dark Mode Transition */
+.dark-mode .gif-awake {
+    opacity: 0;
+    transform: scale(0.9);
+    /* Keep its original blend mode and filter during fade out to prevent Safari artifacts */
+    mix-blend-mode: multiply;
+    filter: contrast(1.15) brightness(0.92);
+}
+
+.dark-mode .gif-sleep {
+    opacity: 0.85;
+    transform: scale(1);
+    /* Filter is inherited from .ghost-gif, no need to restate it */
 }
 
 /* --- Toggle Switch Styles --- */
