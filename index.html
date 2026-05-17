@@ -19,7 +19,7 @@
             }
 
             const bgColor = isDark ? '#121212' : '#F5EBE0';
-            document.write('<style>html { background-color: ' + bgColor + '; }</style>');
+            document.documentElement.style.backgroundColor = bgColor;
 
             // Also update the theme-color meta tag immediately
             const meta = document.querySelector('meta[name="theme-color"]');
@@ -30,9 +30,9 @@
 
 <body>
     <canvas id="fluid-canvas"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; filter: invert(1); transition: filter 0.8s ease;"></canvas>
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; filter: invert(1); transition: filter 0.4s ease;"></canvas>
     <div id="canvas-tint"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; mix-blend-mode: multiply; background-color: var(--tint-color); transition: background-color 0.8s ease;">
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; mix-blend-mode: multiply; background-color: var(--tint-color); transition: background-color 0.4s ease;">
     </div>
 
     <header class="header">

@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Clear the initial inline background color set in the head script to allow CSS transitions to work
+    document.documentElement.style.backgroundColor = '';
+
     // Grab the theme toggle button and icons
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIconSun = document.getElementById('theme-icon-sun');

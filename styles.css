@@ -34,7 +34,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: var(--text-color);
     background: var(--body-bg);
-    transition: background-color 0.8s ease, color 0.8s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
     line-height: 1.6;
 }
 
@@ -51,7 +51,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: background-color 0.8s ease, border-color 0.8s ease, backdrop-filter 0.8s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
 }
 
 .nav-links {
@@ -126,12 +126,14 @@ body {
     font-size: 1.8rem;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    transition: color 0.4s ease;
 }
 
 .introduction {
     font-size: 0.95rem;
     color: var(--text-color);
     margin-bottom: 1.5rem;
+    transition: color 0.4s ease;
 }
 
 .social-links {
@@ -190,7 +192,7 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    transition: background-color 0.8s ease, border-color 0.8s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 /* Main Content */
@@ -203,7 +205,7 @@ body {
     padding: 3rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.8s ease, border-color 0.8s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
 
 /* --- New Full-Width Projects Layout --- */
@@ -238,6 +240,7 @@ body {
     border-bottom: none;
     /* Removing the old full-width border */
     text-align: center;
+    transition: color 0.4s ease;
 }
 
 /* Creates a nice centered underline for the title */
@@ -287,7 +290,7 @@ body {
     -webkit-backdrop-filter: blur(12px);
     border-radius: 8px;
     z-index: -1;
-    transition: background-color 0.8s ease, border-color 0.8s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .project-card::before {
@@ -405,7 +408,7 @@ body {
 /* Hover pop-up — matches .project-card:hover exactly */
 .social-btn,
 .nav-btn {
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease, color 0.4s ease;
 }
 
 .social-btn:hover,
@@ -439,7 +442,7 @@ body {
     filter: invert(1) brightness(1.2) contrast(1.5);
     mix-blend-mode: difference;
 
-    transition: opacity 0.6s ease-out, filter 0.6s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.4s ease-out, filter 0.4s ease-out, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .gif-awake {
@@ -494,8 +497,6 @@ body {
     --glass-border: rgba(255, 255, 255, 0.1);
     --btn-glass-bg: rgba(30, 30, 30, 0.3);
     --card-glow-opacity: 1;
-
-    background-color: #121212;
 }
 
 .dark-mode .repo-link-container {
@@ -525,7 +526,7 @@ body {
     height: 100%;
     background-color: var(--glass-bg);
     border-right: 1px solid var(--glass-border);
-    transition: background-color 0.8s ease, border-color 0.8s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
     /* Removed backdrop-filter to fix Chrome jittering on animated clip-paths */
 }
 
@@ -709,6 +710,7 @@ html {
     position: relative;
     padding-bottom: 0.5rem;
     text-align: left;
+    transition: color 0.4s ease;
 }
 
 .skills-section h2::after,
@@ -739,6 +741,7 @@ html {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    transition: color 0.4s ease;
 }
 
 .dark-mode .skills-category h3 {
