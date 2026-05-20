@@ -314,7 +314,6 @@ body {
     -webkit-filter: blur(8px);
     opacity: 0.001;
     /* Safari hack to prevent optimization clipping */
-    transition: opacity 0.3s ease-in-out;
     border-radius: 16px;
     /* exactly match the 16px card */
     pointer-events: none;
