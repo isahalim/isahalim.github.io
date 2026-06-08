@@ -35,17 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function switchTheme(e) {
         e.preventDefault();
         const isDark = document.documentElement.classList.toggle('dark-mode');
-        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (isDark) {
             localStorage.setItem('theme', 'dark');
         } else {
             localStorage.setItem('theme', 'light');
         }
-        // Delay the meta theme-color update to sync with the CSS transition (0.2s)
-        // so Safari's browser chrome doesn't flash ahead of the page
-        setTimeout(() => {
-            if (themeColorMeta) themeColorMeta.setAttribute('content', isDark ? '#121212' : '#F5EBE0');
-        }, 200);
+        // theme-color is always locked to #121212 — no meta update needed on toggle
         updateIcon(isDark);
     }
 
@@ -67,11 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     updateIcon(isDark);
 
-    // Synchronize meta tag
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', isDark ? '#121212' : '#F5EBE0');
-    }
+    // theme-color meta is always locked to #121212 via HTML — no JS update needed
 
     // Helper to detect mobile
     const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);

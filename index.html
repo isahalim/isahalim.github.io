@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#121212">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: light)">
     <title>S. Halim — Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,9 +23,10 @@
             const bgColor = isDark ? '#121212' : '#F5EBE0';
             document.documentElement.style.backgroundColor = bgColor;
 
-            // Also update the theme-color meta tag immediately
-            const meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.setAttribute('content', bgColor);
+            // Lock all theme-color meta tags to dark — prevents Safari browser chrome flash
+            document.querySelectorAll('meta[name="theme-color"]').forEach(function(m) {
+                m.setAttribute('content', '#121212');
+            });
         })();
     </script>
 </head>
