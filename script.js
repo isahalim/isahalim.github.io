@@ -37,12 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDark = document.documentElement.classList.toggle('dark-mode');
         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (isDark) {
-            localStorage.setItem('theme', 'dark'); // Save preference
-            if (themeColorMeta) themeColorMeta.setAttribute('content', '#121212');
+            localStorage.setItem('theme', 'dark');
         } else {
-            localStorage.setItem('theme', 'light'); // Save preference
-            if (themeColorMeta) themeColorMeta.setAttribute('content', '#F5EBE0');
+            localStorage.setItem('theme', 'light');
         }
+        // Delay the meta theme-color update to sync with the CSS transition (0.2s)
+        // so Safari's browser chrome doesn't flash ahead of the page
+        setTimeout(() => {
+            if (themeColorMeta) themeColorMeta.setAttribute('content', isDark ? '#121212' : '#F5EBE0');
+        }, 200);
         updateIcon(isDark);
     }
 
@@ -241,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const aboutMe = document.getElementById('about-me');
         const sidebar = document.querySelector('.sidebar');
         const projectsTitle = document.querySelector('#projects h2');
-        const projects = document.querySelectorAll('.project-card, .glass-card');
+        const projects = document.querySelectorAll('.project-card, .glass-card, .cycling-gifs-container');
 
         const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
 
@@ -289,4 +292,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initRevealAnimations();
+
+    // --- Click-to-Toggle GIF ---
+    function initGifToggle() {
+        const container = document.getElementById('gif-toggle-container');
+        const img = document.getElementById('combo-gif');
+        const keyword = document.getElementById('combo-keyword');
+        const ripple = document.getElementById('gif-ripple');
+        
+        if (!container || !img || !keyword) return;
+        
+        let showingFriendly = true;
+        
+        // Preload the other GIF so it swaps instantly from cache
+        const preload = new Image();
+        preload.src = 'hostile_combo.gif';
+        
+        container.addEventListener('click', (e) => {
+            // Ripple effect at click position
+            if (ripple) {
+                const rect = container.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height) * 2;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.opacity = '1';
+                ripple.style.transition = 'none';
+                // Force reflow to restart animation
+                ripple.offsetWidth;
+                ripple.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+                ripple.style.transform = 'scale(1)';
+                ripple.style.opacity = '0';
+            }
+            
+            showingFriendly = !showingFriendly;
+            
+            if (showingFriendly) {
+                img.src = 'friendly_combo.gif';
+                img.alt = 'Friendly Combo';
+                keyword.textContent = 'friendly';
+                keyword.style.color = '#3B82F6';
+                // Preload the other
+                preload.src = 'hostile_combo.gif';
+            } else {
+                img.src = 'hostile_combo.gif';
+                img.alt = 'Hostile Combo';
+                keyword.textContent = 'hostile';
+                keyword.style.color = '#EF4444';
+                // Preload the other
+                preload.src = 'friendly_combo.gif';
+            }
+        });
+    }
+    
+    initGifToggle();
 });

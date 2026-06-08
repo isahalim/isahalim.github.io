@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#121212">
-    <title>Academic Portfolio</title>
+    <title>S. Halim — Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -29,11 +29,7 @@
 </head>
 
 <body>
-    <canvas id="fluid-canvas"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; filter: invert(1); transition: filter 0.4s ease;"></canvas>
-    <div id="canvas-tint"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; mix-blend-mode: multiply; background-color: var(--tint-color); transition: background-color 0.4s ease;">
-    </div>
+
 
     <header class="header">
         <ul class="nav-links">
@@ -114,6 +110,42 @@
     <div class="projects-container">
         <section id="projects" class="projects-section">
             <h2 class="reveal-hidden">Projects</h2>
+
+            <div class="project-card reveal-hidden">
+                <img src="loco_iso.gif" alt="XAI Is All You Need" class="project-img">
+                <div class="project-info">
+                    <h3><a href="https://github.com/isahalim/XAI-Planner-Is-All-You-Need" target="_blank"
+                            style="text-decoration: none; color: inherit;">XAI Planner Is All You Need</a></h3>
+                    <p>Evaluating semantic bias in Embodied AI Agents.
+                        Integrated open-source VLM Qwen2.5-VL-7B-Instruct as a planner
+                        over a PPO (actor-critic) walker. XAI methods revealed a behavioral link:
+                        mood-loaded prompts nudge physical behavior, but only when the model reasons
+                        aloud before acting.
+                    </p>
+                    <a href="https://github.com/isahalim/XAI-Planner-Is-All-You-Need" target="_blank"
+                        class="repo-link-container">
+                        <span class="repo-text">See Repository</span>
+                        <i class="fas fa-arrow-right repo-arrow"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cycling-gifs-container reveal-hidden"
+                style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem;">
+                <div id="gif-toggle-container"
+                    style="width: 100%; cursor: pointer; position: relative; overflow: hidden; border-radius: 8px;">
+                    <img id="combo-gif" src="friendly_combo.gif" alt="Friendly Combo"
+                        style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <div id="gif-ripple"
+                        style="position: absolute; border-radius: 50%; background: rgba(255,255,255,0.4); transform: scale(0); pointer-events: none;">
+                    </div>
+                </div>
+                <p id="combo-caption" style="margin-top: 0.5rem; font-style: italic; opacity: 0.8;">
+                    Embodied AI Agent instructed: go to the <span id="combo-keyword"
+                        style="color: #3B82F6; font-weight: 600;">friendly</span> one
+                </p>
+                <p style="margin-top: 0.25rem; font-size: 0.8rem; opacity: 0.5;">click to change prompt</p>
+            </div>
 
             <div class="project-card reveal-hidden">
                 <img src="extractEval.png" alt="Feature Extraction Architecture Evaluation" class="project-img">
@@ -241,21 +273,6 @@
             </div>
         </section>
     </div>
-    <script>
-        // Check if mobile
-        const isMobileDevice = () => /Mobi|Android/i.test(navigator.userAgent);
-
-        if (isMobileDevice()) {
-            // Hide the fluid canvas on mobile
-            const canvas = document.getElementById('fluid-canvas');
-            if (canvas) canvas.style.display = 'none';
-        } else {
-            // Load fluid.js only on desktop
-            const fluidScript = document.createElement('script');
-            fluidScript.src = 'scripts/fluid.js';
-            document.body.appendChild(fluidScript);
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 

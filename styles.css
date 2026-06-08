@@ -8,9 +8,7 @@
     --primary-color: #2b363f;
     --acc-color: #315c7e;
     --bg-color: rgba(255, 255, 255, 0.85);
-    /* Semi-transparent to reveal fluid */
     --page-bg: #F5EBE0;
-    --tint-color: #F5EBE0;
     --sidebar-bg: transparent;
     /* Changed to allow glass effect over body background */
     --text-color: #494e52;
@@ -34,6 +32,7 @@
 
 html {
     background-color: var(--page-bg);
+    transition: background-color 0.2s ease;
 }
 
 body {
@@ -84,7 +83,6 @@ body {
     -webkit-backdrop-filter: none;
     min-width: 120px;
     z-index: 1000;
-    /* Align z-index for liquidGL target */
 }
 
 /* Page Layout */
@@ -167,7 +165,6 @@ body {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     z-index: 1000;
-    /* Align z-index for liquidGL target */
 }
 
 /* Base style for the content span to stay above glass canvas */
@@ -180,7 +177,7 @@ body {
     gap: 0.5rem;
 }
 
-/* Sidebar card — pure CSS, no liquidGL refraction */
+/* Sidebar card — pure CSS glass effect */
 .sidebar-glass {
     position: absolute;
     top: -10px;
@@ -494,7 +491,7 @@ body {
     /* Matches your toggle switch */
     --bg-color: rgba(18, 18, 18, 0.85);
     --page-bg: #121212;
-    --tint-color: #FFFFFF;
+
     --text-color: #e0e0e0;
     --light-text: #a0a0a0;
     --border-color: #333333;
@@ -510,10 +507,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Fixes the WebGL fluid canvas inversion in dark mode */
-.dark-mode #fluid-canvas {
-    filter: invert(0) sepia(0) !important;
-}
+
 
 .wave-bg {
     position: fixed;
@@ -647,9 +641,7 @@ html {
         /* Keeps it from getting too wide on iPads */
     }
 
-    #canvas-tint {
-        display: none !important;
-    }
+
 
     /* 3. Make the main content box take up the full width */
     .main-content {
