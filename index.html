@@ -24,7 +24,7 @@
             document.documentElement.style.backgroundColor = bgColor;
 
             // Lock all theme-color meta tags to dark — prevents Safari browser chrome flash
-            document.querySelectorAll('meta[name="theme-color"]').forEach(function(m) {
+            document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
                 m.setAttribute('content', '#121212');
             });
         })();
@@ -135,12 +135,10 @@
 
             <div class="cycling-gifs-container reveal-hidden"
                 style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem;">
-                <div id="gif-toggle-container"
-                    style="width: 100%; cursor: pointer; position: relative; overflow: hidden; border-radius: 8px;">
-                    <img id="combo-gif" src="friendly_combo.gif" alt="Friendly Combo"
-                        style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <div id="gif-ripple"
-                        style="position: absolute; border-radius: 50%; background: rgba(255,255,255,0.4); transform: scale(0); pointer-events: none;">
+                <div id="gif-toggle-container">
+                    <div id="gif-inner-wrapper" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 8px; z-index: 1;">
+                        <img id="combo-gif" src="friendly_combo.gif" alt="Friendly Combo">
+                        <div id="gif-ripple"></div>
                     </div>
                 </div>
                 <p id="combo-caption" style="margin-top: 0.5rem; font-style: italic; opacity: 0.8;">

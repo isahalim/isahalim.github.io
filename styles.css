@@ -481,7 +481,70 @@ body {
 }
 
 /* --- Toggle Switch Styles --- */
+#gif-toggle-container {
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
+#gif-toggle-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: conic-gradient(from var(--glow-angle), #4CAF50, #2196F3, #9c27b0, #00bcd4, #4CAF50);
+    z-index: -2;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    border-radius: 8px;
+    pointer-events: none;
+    animation: glowRotation 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+#gif-toggle-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--page-bg);
+    border-radius: 8px;
+    z-index: -1;
+    transition: background-color 0.2s ease;
+}
+
+#gif-toggle-container:hover::before {
+    opacity: 1;
+}
+
+#combo-gif {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+#gif-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transform: scale(0);
+    pointer-events: none;
+    z-index: 2;
+}
 
 /* --- Dark Mode Colors --- */
 .dark-mode {
