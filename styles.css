@@ -486,7 +486,7 @@ body {
     cursor: pointer;
     position: relative;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #gif-toggle-container::before {
@@ -540,7 +540,7 @@ body {
 #gif-ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
     transform: scale(0);
     pointer-events: none;
     z-index: 2;
