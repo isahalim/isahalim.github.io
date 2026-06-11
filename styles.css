@@ -437,14 +437,16 @@ body {
 
 .ghost-gif {
     position: absolute;
+    top: 50%;
+    left: 50%;
     max-width: 600px;
     width: 100%;
     pointer-events: none;
     opacity: 0;
 
     border-radius: 32px;
-    -webkit-mask-image: radial-gradient(ellipse closest-side at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-    mask-image: radial-gradient(ellipse closest-side at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: radial-gradient(50% 50% at 50% 50%, black 50%, transparent 100%);
+    mask-image: radial-gradient(50% 50% at 50% 50%, black 50%, transparent 100%);
 
     /* Default removal trick — works on dark backgrounds (used by sleep gif) */
     filter: invert(1) brightness(1.2) contrast(1.5);
@@ -459,20 +461,20 @@ body {
     /* multiply makes the white GIF background blend cleanly into the light beige page bg */
     mix-blend-mode: multiply;
     filter: contrast(1.15) brightness(0.92);
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .gif-sleep {
     opacity: 0;
     z-index: 1;
-    transform: scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9);
     /* Removed liquid distort and blur */
 }
 
 /* Dark Mode Transition */
 .dark-mode .gif-awake {
     opacity: 0;
-    transform: scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9);
     /* Keep its original blend mode and filter during fade out to prevent Safari artifacts */
     mix-blend-mode: multiply;
     filter: contrast(1.15) brightness(0.92);
@@ -480,7 +482,7 @@ body {
 
 .dark-mode .gif-sleep {
     opacity: 0.85;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     /* Filter is inherited from .ghost-gif, no need to restate it */
 }
 
