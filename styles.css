@@ -430,17 +430,21 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    padding-bottom: 50px;
-    min-height: 400px;
+    padding-bottom: 20px;
+    height: 350px;
     /* Space for the stacked GIFs */
 }
 
 .ghost-gif {
     position: absolute;
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
     pointer-events: none;
     opacity: 0;
+
+    border-radius: 32px;
+    -webkit-mask-image: radial-gradient(ellipse closest-side at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    mask-image: radial-gradient(ellipse closest-side at center, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
 
     /* Default removal trick — works on dark backgrounds (used by sleep gif) */
     filter: invert(1) brightness(1.2) contrast(1.5);
