@@ -284,30 +284,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initRevealAnimations();
 
-    // --- Click-to-Toggle GIF ---
+    // --- Click-to-Toggle and Drag-to-Compare GIF ---
     function initGifToggle() {
         const container = document.getElementById('gif-toggle-container');
-        const img = document.getElementById('combo-gif');
+        const imgPlain = document.getElementById('combo-gif-plain');
+        const imgSaliency = document.getElementById('combo-gif-saliency');
         const keyword = document.getElementById('combo-keyword');
         const ripple = document.getElementById('gif-ripple');
+        const sliderHandle = document.getElementById('slider-handle');
+        const sliderDivider = document.getElementById('slider-divider');
         
-        if (!container || !img || !keyword) return;
+        if (!container || !imgPlain || !imgSaliency || !keyword) return;
         
         let showingFriendly = true;
         
-        // Preload the other GIF so it swaps instantly from cache
-        const preload = new Image();
-        preload.src = 'hostile_combo.gif';
+        // Preload the other GIFs
+        const preloadPlain = new Image();
+        preloadPlain.src = 'hostile_combo_plain.gif';
+        const preloadSaliency = new Image();
+        preloadSaliency.src = 'hostile_combo_saliency.gif';
         
-        container.addEventListener('click', (e) => {
+        let isDragging = false;
+        let pointerDownX = 0;
+        let pointerDownY = 0;
+        let pointerDownTime = 0;
+
+        function updateSlider(val) {
+            val = Math.max(0, Math.min(100, val));
+            imgPlain.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+            imgPlain.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
+            if (sliderHandle) sliderHandle.style.left = `${val}%`;
+            if (sliderDivider) sliderDivider.style.left = `${val}%`;
+        }
+
+        container.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            pointerDownX = e.clientX;
+            pointerDownY = e.clientY;
+            pointerDownTime = Date.now();
+            e.currentTarget.setPointerCapture(e.pointerId);
+        });
+
+        container.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const rect = container.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let percentage = (x / rect.width) * 100;
+            updateSlider(percentage);
+        });
+
+        container.addEventListener('pointerup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            container.releasePointerCapture(e.pointerId);
+
+            const dist = Math.sqrt(Math.pow(e.clientX - pointerDownX, 2) + Math.pow(e.clientY - pointerDownY, 2));
+            const timeDiff = Date.now() - pointerDownTime;
+
+            // If it was a quick tap/click without moving much, toggle the GIF
+            if (dist < 10 && timeDiff < 400) {
+                toggleGif(e.clientX, e.clientY);
+            }
+        });
+
+        container.addEventListener('pointercancel', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            container.releasePointerCapture(e.pointerId);
+        });
+
+        function toggleGif(clientX, clientY) {
             // Ripple effect at click position
             if (ripple) {
                 const rect = container.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height) * 2;
                 ripple.style.width = size + 'px';
                 ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                ripple.style.left = (clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (clientY - rect.top - size / 2) + 'px';
                 ripple.style.transform = 'scale(0)';
                 ripple.style.opacity = '1';
                 ripple.style.transition = 'none';
@@ -321,21 +375,27 @@ document.addEventListener('DOMContentLoaded', () => {
             showingFriendly = !showingFriendly;
             
             if (showingFriendly) {
-                img.src = 'friendly_combo.gif';
-                img.alt = 'Friendly Combo';
+                imgPlain.src = 'friendly_combo_plain.gif';
+                imgPlain.alt = 'Friendly Combo Plain';
+                imgSaliency.src = 'friendly_combo_saliency.gif';
+                imgSaliency.alt = 'Friendly Combo Saliency';
                 keyword.textContent = 'friendly';
                 keyword.style.color = '#3B82F6';
-                // Preload the other
-                preload.src = 'hostile_combo.gif';
+                
+                preloadPlain.src = 'hostile_combo_plain.gif';
+                preloadSaliency.src = 'hostile_combo_saliency.gif';
             } else {
-                img.src = 'hostile_combo.gif';
-                img.alt = 'Hostile Combo';
+                imgPlain.src = 'hostile_combo_plain.gif';
+                imgPlain.alt = 'Hostile Combo Plain';
+                imgSaliency.src = 'hostile_combo_saliency.gif';
+                imgSaliency.alt = 'Hostile Combo Saliency';
                 keyword.textContent = 'hostile';
                 keyword.style.color = '#EF4444';
-                // Preload the other
-                preload.src = 'friendly_combo.gif';
+                
+                preloadPlain.src = 'friendly_combo_plain.gif';
+                preloadSaliency.src = 'friendly_combo_saliency.gif';
             }
-        });
+        }
     }
     
     initGifToggle();
